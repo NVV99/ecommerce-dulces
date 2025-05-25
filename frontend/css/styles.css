@@ -1,0 +1,292 @@
+/* CONFIGURACIÓN GLOBAL*/
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300;400;600&display=swap');
+
+/* Fuentes principales */
+body {
+    font-family: 'Raleway', sans-serif; /* Fuente general */
+    background-color: #fce4ec; 
+    color: #212121; 
+    margin: 0;
+    padding: 0;
+}
+
+/* Logo en la esquina superior derecha */
+
+.logo {
+    width: 120px; /* Tamaño del logo */
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    animation: rebote 0.3s infinite alternate;
+}
+
+@keyframes rebote {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-8px); }
+}
+
+
+/* Estilos para títulos */
+h1, h2 {
+    font-family: 'Pacifico', cursive; /* Fuente decorativa */
+    text-align: center;
+}
+
+
+/* ESTILOS DEL NAVBAR */
+
+.nav-animated, .product-animated {
+    transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.nav-animated:hover, .product-animated:hover {
+    transform: scale(1.1);
+    font-size: 16px;
+}
+
+/* Ajuste en móviles para evitar desbordes */
+@media (max-width: 768px) {
+    .nav-animated:hover {
+        transform: scale(1.03); /* Menos crecimiento en móviles */
+        font-size: 16px;
+    }
+
+    .dropdown-menu {
+        max-width: 90%; /* Evita que el menú se salga de la pantalla */
+    }
+}
+
+/* Ajuste de los iconos */
+.nav-link i, .product-animated i {
+    margin-right: 5px;
+}
+
+.social-icons a {
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+}
+
+.navbar, .footer {
+    background-color: #212121;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Estilos para enlaces del menú */
+.navbar-nav .nav-link {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e91e63;
+}
+
+/* Menú desplegable */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.custom-dropdown {
+    background-color: #fce4ec !important;
+}
+
+.custom-dropdown .dropdown-item {
+    color: #212121;
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background-color: #e91e63;
+    color: white;
+}
+
+
+/* MENSAJE DE BIENVENIDA */
+
+.bg-pink {
+    background-color: #f9c1d4;
+}
+
+/* Subtítulo */
+.lead {
+    font-style: italic;
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    color: #212121;
+}
+
+
+/* CARRUSEL DE IMÁGENES */
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Centrado */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Ajuste de tamaño */
+#carouselExample {
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Bordes redondeados */
+.carousel-inner img {
+    border-radius: 20px;
+}
+
+
+/* Efecto de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* BOTONES Y EFECTOS */
+
+.btn {
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #e91e63;
+    color: white;
+    box-shadow: 0 4px 8px rgba(233, 30, 99, 0.5);
+}
+
+/* PIE DE PÁGINA */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Mantiene la altura completa de la página */
+}
+
+footer {
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    background-color: #212121; /* Color uniforme */
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #e91e63;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+/* PRODUCTOS Y TARJETAS */
+
+#titulo-productos {
+    margin-bottom: 50px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 30px;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ABOUT US */
+
+/* Espacio debajo del título */
+.about-title {
+    margin-bottom: 30px;
+}
+
+/*  Estilo del recuadro */
+.creator-box {
+    background-color: #fce4ec;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+}
+.creator-box h3 {
+    margin-top: 15px; /* Ajusta la distancia del texto */
+}
+
+/* Efecto de agrandamiento cuando pasas el cursor */
+.creator-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* iconos de redes sociales */
+
+.social-icons {
+    display: flex;
+    justify-content: center; /* Centrar los iconos */
+    gap: 10px; /* Espaciado entre los iconos */
+}
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #212121;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+.social-icons a:hover {
+    background-color: #e91e63;
+}
+
+.contact-form {
+    margin-bottom: 40px; /* Espacio debajo del formulario */
+}

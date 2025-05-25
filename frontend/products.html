@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Shop - Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body data-section="products">
+
+    <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="Sakura Suki Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-animated active" href="index.html">
+                            <i class="fa-solid fa-torii-gate"></i> Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link nav-animated dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-box-open"></i> Productos
+                        </a>
+                        <ul class="dropdown-menu custom-dropdown">
+                            <li><a class="dropdown-item product-animated" href="products.html?categoria=todos"><i class="fa-solid fa-cookie-bite"></i> Todo el Catálogo</a></li>
+                            <li><a class="dropdown-item product-animated" href="products.html?categoria=dulces"><i class="fa-solid fa-candy-cane"></i> Dulces</a></li>
+                            <li><a class="dropdown-item product-animated" href="products.html?categoria=chocolates"><i class="fa-solid fa-square"></i> Chocolates</a></li>
+                            <li><a class="dropdown-item product-animated" href="products.html?categoria=bizcochos"><i class="fa-solid fa-bread-slice"></i> Bizcochos</a></li>
+                            <li><a class="dropdown-item product-animated" href="products.html?categoria=bebidas"><i class="fa-solid fa-mug-hot"></i> Bebidas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-animated" href="about.html">
+                            <i class="fa-solid fa-fan"></i> Sobre Nosotros
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link nav-animated" href="cart.html">
+                            <i class="fa-solid fa-shopping-cart"></i> Carrito (<span id="cart-count">0</span>)
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fa-solid fa-user"></i> Iniciar Sesión
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor de productos -->
+    <section class="container mt-4">
+        <h2 id="titulo-productos">Nuestros Productos</h2>
+        <div id="productos-container" class="row"></div>
+    </section>
+
+    <!-- Footer -->
+     <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <p class="m-0">Sakura Suki © 2025 - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://github.com" class="fab fa-github"></a>
+                <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://twitter.com"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <p>contacto@sakurasuki.com | +34 600 123 456</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+
+</body>
+</html>

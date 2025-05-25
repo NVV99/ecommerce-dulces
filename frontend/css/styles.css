@@ -1,0 +1,38 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+/* Barra de Navegación */
+.navbar {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de Botón al Pasar el Ratón */
+.btn:hover {
+    filter: brightness(85%);
+}
+
+/* Sección de Pedidos */
+#lista-pedidos {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de Productos */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes Responsivos */
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 150px;
+    }
+}

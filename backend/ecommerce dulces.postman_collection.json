@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "52d0ee2c-1cfb-4d5c-8b90-008c0ea90116",
+		"name": "ecommerce dulces",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44842617",
+		"_collection_link": "https://nvv-1414215.postman.co/workspace/NVV's-Workspace~28cc8e50-4b4a-4ffa-8b24-db73a0ae1e2f/collection/44842617-52d0ee2c-1cfb-4d5c-8b90-008c0ea90116?action=share&source=collection_link&creator=44842617"
+	},
+	"item": [
+		{
+			"name": "Registrar User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Niki\",\r\n    \"email\": \"niki@email.com\",\r\n    \"contraseña\": \"supersegura123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/usuarios/registro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"usuarios",
+						"registro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Prueba",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"niki@email.com\",\r\n    \"contraseña\": \"supersegura123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/usuarios/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Añadir Producto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuaWtpQGVtYWlsLmNvbSIsImlhdCI6MTc0ODIwMDk3NywiZXhwIjoxNzQ4MjA0NTc3fQ.3jutN7KhXXwHKNFA5exdi-EMtsKhxGVxHnOC-ycC4SI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Chocolate Deluxe\",\r\n    \"descripcion\": \"Delicioso chocolate con avellanas\",\r\n    \"precio\": 5.99,\r\n    \"stock\": 50\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Pedidos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuaWtpQGVtYWlsLmNvbSIsImlhdCI6MTc0ODIwMDk3NywiZXhwIjoxNzQ4MjA0NTc3fQ.3jutN7KhXXwHKNFA5exdi-EMtsKhxGVxHnOC-ycC4SI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/pedidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuaWtpQGVtYWlsLmNvbSIsImlhdCI6MTc0ODIwMDk3NywiZXhwIjoxNzQ4MjA0NTc3fQ.3jutN7KhXXwHKNFA5exdi-EMtsKhxGVxHnOC-ycC4SI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"total\": 19.99,\r\n    \"productos\": [\r\n        { \"id\": 1, \"cantidad\": 2, \"precio_unitario\": 4.99 },\r\n        { \"id\": 3, \"cantidad\": 1, \"precio_unitario\": 9.99 }\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pedidos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Pedido",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuaWtpQGVtYWlsLmNvbSIsImlhdCI6MTc0ODIwMDk3NywiZXhwIjoxNzQ4MjA0NTc3fQ.3jutN7KhXXwHKNFA5exdi-EMtsKhxGVxHnOC-ycC4SI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"estado\": \"enviado\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/pedidos/id_pedido",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"pedidos",
+						"id_pedido"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

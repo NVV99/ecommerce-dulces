@@ -1,53 +1,68 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const categoria = params.get("categoria") || "todos";
-    
-    const tituloElement = document.getElementById("titulo-productos");
-    const contenedor = document.getElementById("productos-container");
+import { apiFetch } from './api.js';
+import { addToCart } from './cart.js'; 
 
-    // Verificamos que los elementos existen antes de modificarlos
-    if (!tituloElement || !contenedor) {
-        console.error("Error: Elementos HTML no encontrados.");
-        return;
+// 1) Ver que el módulo se carga
+console.log('products.js module loaded');
+
+// 2) Comprueba el dataset del body
+console.log('Body data-section:', document.body.dataset.section);
+
+// Espera a que cargue el DOM
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOMContentLoaded event fired');
+  if (document.body.dataset.section === 'products') {
+    console.log('Section is "products", calling loadProducts()');
+    loadProducts();
+  } else {
+    console.log('Not on products page, section =', document.body.dataset.section);
+  }
+});
+
+// 3) Función para cargar productos
+export async function loadProducts() {
+  console.log('loadProducts() started');
+  try {
+    const productos = await apiFetch('/products');
+    console.log('API returned productos:', productos);
+
+    const cont = document.getElementById("productos-container");
+    if (!cont) {
+      console.error('No existe el elemento #productos-container');
+      return;
     }
 
-    // Títulos para cada categoría
-    const titulos = {
-        todos: "Nuestros Productos",
-        dulces: "Nuestros Dulces",
-        chocolates: "Nuestros Chocolates",
-        bizcochos: "Nuestros Bizcochos",
-        bebidas: "Nuestras Bebidas"
-    };
-
-    // Actualizar el título de la sección
-    tituloElement.textContent = titulos[categoria] || "Nuestros Productos";
-
-    // Lista de productos
-    const productos = [
-        { id: 1, categoria: "dulces", nombre: "Gominolas variadas", precio: "3.99€", imagen: "img/dulce1.jpg" },
-        { id: 2, categoria: "dulces", nombre: "Caramelos de miel", precio: "2.50€", imagen: "img/dulce2.jpg" },
-        { id: 3, categoria: "chocolates", nombre: "Chocolate con almendras", precio: "5.50€", imagen: "img/chocolate1.jpg" },
-        { id: 4, categoria: "bizcochos", nombre: "Muffins de chocolate", precio: "4.99€", imagen: "img/bizcocho1.jpg" },
-        { id: 5, categoria: "bebidas", nombre: "Batido de fresa", precio: "2.99€", imagen: "img/bebida1.jpg" }
-    ];
-
-    // Filtra productos según categoría
-    const productosFiltrados = productos.filter(p => categoria === "todos" || p.categoria === categoria);
-    
-    productosFiltrados.forEach(producto => {
-        const div = document.createElement("div");
-        div.classList.add("col-md-4");
-
-        div.innerHTML = `
-            <div class="product-card">
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <h3>${producto.nombre}</h3>
-                <p class="price">${producto.precio}</p>
-                <button class="btn btn-dark">Añadir al carrito</button>
+    // Mapea y convierte precio a número
+    const html = productos.map(p => {
+      const priceNum = parseFloat(p.precio);
+      console.log(`Producto ${p.id} priceNum=`, priceNum);
+      return `
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">${p.nombre}</h5>
+              <p class="card-text">${p.descripcion}</p>
+              <p class="mt-auto fw-bold">€${priceNum.toFixed(2)}</p>
+              <button class="btn btn-pink mt-2 add-to-cart-btn" data-product-id="${p.id}">
+                <i class="fa-solid fa-cart-plus"></i> Añadir al carrito
+              </button>
             </div>
-        `;
+          </div>
+        </div>
+      `;
+    }).join('');
 
-        contenedor.appendChild(div);
+    console.log('Generated HTML for cards, injecting into container');
+    cont.innerHTML = html;
+    
+    // Añadir evento a cada botón de añadir al carrito
+    cont.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const productId = btn.getAttribute('data-product-id');
+        addToCart(Number(productId));
+      });
     });
-});
+  } catch (err) {
+    console.error('Error dentro de loadProducts():', err);
+  }
+}

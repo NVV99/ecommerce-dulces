@@ -1,36 +1,39 @@
-const db = require('./config/db');
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const usuariosRoutes = require('./routes/usuarios');
-const productosRoutes = require('./routes/productos');
-const pedidosRoutes = require('./routes/pedidos');
+const db = require('./config/db');
+const errorHandler = require('./middlewares/errorMiddleware');
 
-// Middleware para procesar JSON
+app.use(cors());
 app.use(express.json());
 
 // Importar rutas
-app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/products', require('./routes/products'));
+app.use('/api/categories', require('./routes/categories'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/payments', require('./routes/payments'));
+app.use('/api/contact', require('./routes/contact'));
 
-// Registrar rutas
-app.use('/api/productos', productosRoutes);
+// Test DB
+(async () => {
+  try {
+    await db.query('SELECT 1');
+    console.log('DB connected');
+  } catch (err) {
+    console.error('DB connection error:', err);
+  }
+})();
 
-// Registrar rutas
-app.use('/api/pedidos', pedidosRoutes); 
-
-
-// Test de conexión de la base de datos
-db.query('SELECT 1', (err, results) => {
-    if (err) console.error('Error en la prueba de conexión:', err);
-    else console.log('La base de datos está lista');
-});
-
-// Test de conexión del backend 
+// Test server
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'El servidor está funcionando' });
+  res.json({ message: 'Server is running' });
 });
 
-// Levantar el servidor
-app.listen(5000, () => {
-    console.log('Servidor en http://localhost:5000');
-});
+// Manejo de errores
+app.use(errorHandler);
 
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));

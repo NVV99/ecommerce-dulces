@@ -1,21 +1,15 @@
-const mysql = require('mysql2');
-const dotenv = require('dotenv');
+require('dotenv').config();
+const mysql = require('mysql2/promise');
 
-dotenv.config();
-
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+// Configuración de la conexión a la base de datos MySQL
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'ecommerce_dulces',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Error conectando a la base de datos:', err);
-        return;
-    }
-    console.log('Conectado a la base de datos MySQL');
-});
-
-module.exports = connection;
+module.exports = pool;
